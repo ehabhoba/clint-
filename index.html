@@ -167,3 +167,57 @@
     </footer>
 </body>
 </html>
+<script>
+document.getElementById("adForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const formData = {
+        companyName: document.getElementById("companyName").value,
+        responsibleName: document.getElementById("responsibleName").value,
+        phone: document.getElementById("phone").value,
+        website: document.getElementById("website").value,
+        industry: document.getElementById("industry").value,
+        landing: document.getElementById("landing").value,
+        adType: document.getElementById("adType").value,
+        platform: document.getElementById("platform").value,
+        startDate: document.getElementById("startDate").value,
+        endDate: document.getElementById("endDate").value,
+        budget: document.getElementById("budget").value,
+        notes: document.getElementById("notes").value,
+        whatsapp: document.getElementById("whatsapp").value
+    };
+
+    // ✅ 1. إرسال إلى Zapier Webhook
+    fetch("https://hooks.zapier.com/hooks/catch/XXXXXX/YYYYYY", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+    }).then(() => {
+        // ✅ 2. إرسال إلى واتساب
+        const msg = `📝 *طلب حملة إعلانية جديدة*%0A
+🔹 *اسم النشاط:* ${formData.companyName}%0A
+👤 *المسؤول:* ${formData.responsibleName}%0A
+📞 *الهاتف:* ${formData.phone}%0A
+🌐 *الموقع:* ${formData.website}%0A
+💼 *مجال النشاط:* ${formData.industry}%0A
+🔗 *رابط الإعلان:* ${formData.landing}%0A
+🎯 *نوع الإعلان:* ${formData.adType}%0A
+📱 *المنصة:* ${formData.platform}%0A
+📅 *من:* ${formData.startDate} إلى ${formData.endDate}%0A
+💰 *الميزانية:* ${formData.budget}%0A
+🗒️ *ملاحظات:* ${formData.notes}`;
+
+        if (formData.whatsapp && formData.whatsapp.length > 8) {
+            window.open(`https://wa.me/${formData.whatsapp}?text=${msg}`, '_blank');
+        }
+
+        alert(\"✅ تم إرسال الطلب بنجاح!\");
+        document.getElementById(\"adForm\").reset();
+    }).catch(error => {
+        console.error(error);
+        alert(\"❌ حدث خطأ أثناء إرسال الطلب. حاول مرة أخرى.\");
+    });
+});
+</script>
