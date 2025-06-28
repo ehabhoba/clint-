@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إيهاب جي إم | خدمات إعلانية ذكية</title>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(to bottom right, #fefefe, #e2e8f0);
+            margin: 0;
+            padding: 0;
+            direction: rtl;
+        }
+        header {
+            background: linear-gradient(90deg, #ff0000, #cc0000);
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        header h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+        header img {
+            height: 55px;
+            filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.2));
+        }
+        main {
+            padding: 50px 20px 20px;
+            animation: fadeIn 1.2s ease;
+        }
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(20px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+        form {
+            background: white;
+            padding: 35px 25px;
+            border-radius: 14px;
+            box-shadow: 0 12px 25px rgba(0,0,0,0.07);
+            max-width: 750px;
+            margin: auto;
+            transition: all 0.3s ease;
+        }
+        label {
+            display: block;
+            margin-top: 18px;
+            font-weight: 600;
+            color: #222;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 14px;
+            margin-top: 6px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            background-color: #fcfcfc;
+            transition: border-color 0.3s ease;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: #d10000;
+            outline: none;
+        }
+        button {
+            margin-top: 30px;
+            background: #d10000;
+            color: white;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 17px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: #b30000;
+        }
+        footer {
+            margin-top: 60px;
+            padding: 25px 10px;
+            background-color: #1a1a1a;
+            color: #ccc;
+            text-align: center;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>إيهاب جي إم | خدمات أونلاين</h1>
+        <img src="logo.png" alt="EhabGM Logo">
+    </header>
+    <main>
+        <form id="adForm">
+            <label for="companyName">اسم النشاط التجاري / الشركة *</label>
+            <input type="text" id="companyName" required>
+
+            <label for="responsibleName">اسم المسؤول *</label>
+            <input type="text" id="responsibleName" required>
+
+            <label for="phone">رقم الهاتف *</label>
+            <input type="text" id="phone" placeholder="EG +20" required>
+
+            <label for="website">رابط صفحة الفيسبوك / الموقع</label>
+            <input type="text" id="website">
+
+            <label for="industry">مجال النشاط / التخصص</label>
+            <input type="text" id="industry">
+
+            <label for="landing">رابط الصفحة المقصودة فى الإعلان</label>
+            <input type="text" id="landing">
+
+            <label for="adType">نوع الإعلان</label>
+            <select id="adType">
+                <option value="">اختر نوع الإعلان</option>
+                <option>صورة</option>
+                <option>فيديو</option>
+                <option>موشن</option>
+                <option>منشور</option>
+                <option>ستوري</option>
+            </select>
+
+            <label for="platform">منصة عرض الإعلان</label>
+            <select id="platform">
+                <option value="">اختر المنصة</option>
+                <option>فيسبوك</option>
+                <option>إنستجرام</option>
+                <option>جوجل</option>
+                <option>يوتيوب</option>
+                <option>تيك توك</option>
+                <option>أخرى</option>
+            </select>
+
+            <label for="startDate">تاريخ بداية الإعلان</label>
+            <input type="date" id="startDate">
+
+            <label for="endDate">تاريخ نهاية الإعلان</label>
+            <input type="date" id="endDate">
+
+            <label for="budget">ميزانية الحملة المطلوبة</label>
+            <input type="text" id="budget">
+
+            <label for="upload">ارفق الشعار أو التصميم (صورة أو PDF)</label>
+            <input type="file" id="upload" accept="image/*,application/pdf">
+
+            <label for="notes">ملاحظات إضافية</label>
+            <textarea id="notes" rows="4"></textarea>
+
+            <label for="whatsapp">رقم واتساب لاستلام نسخة من الطلب</label>
+            <input type="text" id="whatsapp" placeholder="201XXXXXXXXX">
+
+            <button type="submit">إرسال الطلب</button>
+        </form>
+    </main>
+    <footer>
+        © 2025 ehabgm.online | جميع الحقوق محفوظة | تصميم وتنفيذ EhabGM Online Services
+    </footer>
+</body>
+</html>
