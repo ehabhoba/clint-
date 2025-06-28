@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>طلب إعلان | إيهاب جي إم</title>
+    <title>طلب حملة إعلانية | إيهاب جي إم</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         body {
@@ -44,90 +45,34 @@
     </style>
 </head>
 <body>
-    <form id="adForm">
+    <form action="https://hooks.zapier.com/hooks/catch/21998341/ubz4v39/" method="POST">
         <label>اسم النشاط:</label>
-        <input type="text" id="companyName" required>
+        <input type="text" name="companyName" required>
         <label>اسم المسؤول:</label>
-        <input type="text" id="responsibleName" required>
+        <input type="text" name="responsibleName" required>
         <label>رقم الهاتف:</label>
-        <input type="text" id="phone" required>
+        <input type="text" name="phone" required>
         <label>رابط الموقع أو فيسبوك:</label>
-        <input type="text" id="website">
+        <input type="text" name="website">
         <label>مجال النشاط:</label>
-        <input type="text" id="industry">
+        <input type="text" name="industry">
         <label>رابط الصفحة المقصودة:</label>
-        <input type="text" id="landing">
+        <input type="text" name="landing">
         <label>نوع الإعلان:</label>
-        <input type="text" id="adType">
+        <input type="text" name="adType">
         <label>منصة العرض:</label>
-        <input type="text" id="platform">
+        <input type="text" name="platform">
         <label>بداية الإعلان:</label>
-        <input type="date" id="startDate">
+        <input type="date" name="startDate">
         <label>نهاية الإعلان:</label>
-        <input type="date" id="endDate">
+        <input type="date" name="endDate">
         <label>الميزانية:</label>
-        <input type="text" id="budget">
+        <input type="text" name="budget">
         <label>ملاحظات:</label>
-        <textarea id="notes"></textarea>
+        <textarea name="notes"></textarea>
         <label>رقم واتساب:</label>
-        <input type="text" id="whatsapp">
+        <input type="text" name="whatsapp">
         <button type="submit">إرسال الطلب</button>
     </form>
-
-    <script>
-        const SHEET_ID = "18SgrfICcbrOHwxc31jNASq9UCaeIQNTzoeiOAYX1-S8";
-        const API_KEY = "AIzaSyDyOo6oKozoke4VDh7F9l5E5GhXAth55cA";
-        const RANGE = "Sheet1!A1";
-
-        async function sendToSheet(formData) {
-            const values = [[
-                formData.companyName, formData.responsibleName, formData.phone, formData.website,
-                formData.industry, formData.landing, formData.adType, formData.platform,
-                formData.startDate, formData.endDate, formData.budget, formData.notes,
-                "", "", formData.whatsapp
-            ]];
-
-            const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${RANGE}:append?valueInputOption=USER_ENTERED&key=${API_KEY}`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ values })
-            });
-
-            if (!response.ok) {
-                const errorText = await response.text();
-                throw new Error("❌ فشل في إرسال البيانات:\n" + errorText);
-            }
-
-            return await response.json();
-        }
-
-        document.getElementById("adForm").addEventListener("submit", async function(event) {
-            event.preventDefault();
-            const formData = {
-                companyName: document.getElementById("companyName").value,
-                responsibleName: document.getElementById("responsibleName").value,
-                phone: document.getElementById("phone").value,
-                website: document.getElementById("website").value,
-                industry: document.getElementById("industry").value,
-                landing: document.getElementById("landing").value,
-                adType: document.getElementById("adType").value,
-                platform: document.getElementById("platform").value,
-                startDate: document.getElementById("startDate").value,
-                endDate: document.getElementById("endDate").value,
-                budget: document.getElementById("budget").value,
-                notes: document.getElementById("notes").value,
-                whatsapp: document.getElementById("whatsapp").value
-            };
-
-            try {
-                await sendToSheet(formData);
-                alert("✅ تم إرسال الطلب بنجاح!");
-                document.getElementById("adForm").reset();
-            } catch (err) {
-                console.error(err);
-                alert("❌ فشل إرسال البيانات إلى Google Sheets. راجع التفاصيل في Console.");
-            }
-        });
-    </script>
 </body>
 </html>
