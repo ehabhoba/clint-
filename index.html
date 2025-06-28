@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إيهاب جي إم | خدمات إعلانية ذكية</title>
-    <script src="https://apis.google.com/js/api.js"></script>
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <title>إيهاب جي إم | طلب حملة إعلانية</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         body {
@@ -101,63 +99,45 @@
         <img src="logo.png" alt="EhabGM Logo">
     </header>
     <main>
-        <form id="adForm">
+        <form id="adForm" action="https://hooks.zapier.com/hooks/catch/21998341/ubz4v39/" method="POST">
             <label for="companyName">اسم النشاط التجاري / الشركة *</label>
-            <input type="text" id="companyName" required>
+            <input type="text" name="companyName" required>
 
             <label for="responsibleName">اسم المسؤول *</label>
-            <input type="text" id="responsibleName" required>
+            <input type="text" name="responsibleName" required>
 
             <label for="phone">رقم الهاتف *</label>
-            <input type="text" id="phone" placeholder="EG +20" required>
+            <input type="text" name="phone" placeholder="EG +20" required>
 
             <label for="website">رابط صفحة الفيسبوك / الموقع</label>
-            <input type="text" id="website">
+            <input type="text" name="website">
 
             <label for="industry">مجال النشاط / التخصص</label>
-            <input type="text" id="industry">
+            <input type="text" name="industry">
 
             <label for="landing">رابط الصفحة المقصودة فى الإعلان</label>
-            <input type="text" id="landing">
+            <input type="text" name="landing">
 
             <label for="adType">نوع الإعلان</label>
-            <select id="adType">
-                <option value="">اختر نوع الإعلان</option>
-                <option>صورة</option>
-                <option>فيديو</option>
-                <option>موشن</option>
-                <option>منشور</option>
-                <option>ستوري</option>
-            </select>
+            <input type="text" name="adType">
 
             <label for="platform">منصة عرض الإعلان</label>
-            <select id="platform">
-                <option value="">اختر المنصة</option>
-                <option>فيسبوك</option>
-                <option>إنستجرام</option>
-                <option>جوجل</option>
-                <option>يوتيوب</option>
-                <option>تيك توك</option>
-                <option>أخرى</option>
-            </select>
+            <input type="text" name="platform">
 
             <label for="startDate">تاريخ بداية الإعلان</label>
-            <input type="date" id="startDate">
+            <input type="date" name="startDate">
 
             <label for="endDate">تاريخ نهاية الإعلان</label>
-            <input type="date" id="endDate">
+            <input type="date" name="endDate">
 
             <label for="budget">ميزانية الحملة المطلوبة</label>
-            <input type="text" id="budget">
-
-            <label for="upload">ارفق الشعار أو التصميم (صورة أو PDF)</label>
-            <input type="file" id="upload" accept="image/*,application/pdf">
+            <input type="text" name="budget">
 
             <label for="notes">ملاحظات إضافية</label>
-            <textarea id="notes" rows="4"></textarea>
+            <textarea name="notes" rows="4"></textarea>
 
             <label for="whatsapp">رقم واتساب لاستلام نسخة من الطلب</label>
-            <input type="text" id="whatsapp" placeholder="201XXXXXXXXX">
+            <input type="text" name="whatsapp" placeholder="201XXXXXXXXX">
 
             <button type="submit">إرسال الطلب</button>
         </form>
@@ -165,57 +145,5 @@
     <footer>
         © 2025 ehabgm.online | جميع الحقوق محفوظة | تصميم وتنفيذ EhabGM Online Services
     </footer>
-<script>
-  document.getElementById("adForm").addEventListener("submit", function(event) {
-    event.preventDefault();
-
-    const formData = {
-      companyName: document.getElementById("companyName").value,
-      responsibleName: document.getElementById("responsibleName").value,
-      phone: document.getElementById("phone").value,
-      website: document.getElementById("website").value,
-      industry: document.getElementById("industry").value,
-      landing: document.getElementById("landing").value,
-      adType: document.getElementById("adType").value,
-      platform: document.getElementById("platform").value,
-      startDate: document.getElementById("startDate").value,
-      endDate: document.getElementById("endDate").value,
-      budget: document.getElementById("budget").value,
-      notes: document.getElementById("notes").value,
-      whatsapp: document.getElementById("whatsapp").value
-    };
-
-    fetch("https://hooks.zapier.com/hooks/catch/21998341/ubz4v39/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(formData)
-    }).then(() => {
-      const msg = `📝 *طلب حملة إعلانية جديدة*%0A` +
-        `🔹 *اسم النشاط:* ${formData.companyName}%0A` +
-        `👤 *المسؤول:* ${formData.responsibleName}%0A` +
-        `📞 *الهاتف:* ${formData.phone}%0A` +
-        `🌐 *الموقع:* ${formData.website}%0A` +
-        `💼 *مجال النشاط:* ${formData.industry}%0A` +
-        `🔗 *رابط الإعلان:* ${formData.landing}%0A` +
-        `🎯 *نوع الإعلان:* ${formData.adType}%0A` +
-        `📱 *المنصة:* ${formData.platform}%0A` +
-        `📅 *من:* ${formData.startDate} إلى ${formData.endDate}%0A` +
-        `💰 *الميزانية:* ${formData.budget}%0A` +
-        `🗒️ *ملاحظات:* ${formData.notes}`;
-
-      if (formData.whatsapp && formData.whatsapp.length > 8) {
-        window.open(`https://wa.me/${formData.whatsapp}?text=${msg}`, '_blank');
-      }
-
-      alert("✅ تم إرسال الطلب بنجاح!");
-      document.getElementById("adForm").reset();
-    }).catch(error => {
-      console.error(error);
-      alert("❌ حدث خطأ أثناء إرسال الطلب. حاول مرة أخرى.");
-    });
-  });
-</script>
 </body>
 </html>
